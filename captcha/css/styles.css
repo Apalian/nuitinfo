@@ -28,17 +28,15 @@ body {
 }
 
 #puzzlePiece {
-    width: 40px;
-    height: 15px;
+    width: 40px; /* Taille réduite */
+    height: 15px; /* Taille réduite */
     position: absolute;
     background: linear-gradient(135deg, red, yellow);
     border-radius: 20px; /* Forme de pilule */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: none;
     transform-origin: center;
-    transition: transform 0.25s ease-out; /* Ajout de la transition */
 }
-
 
 
 
