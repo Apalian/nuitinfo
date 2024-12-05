@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Accueil from "./components/Accueil";
+import MainPage from "./components/MainPage";
 import Navbar from "./components/Navbar";
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
           <Navbar />
         <Routes>
           {/* Définir les routes */}
-          <Route path="/" element={<Accueil />} />
+          <Route path="/MainPage" element={<MainPage />} />
         </Routes>
       </Router>
   );

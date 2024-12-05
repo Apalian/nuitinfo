@@ -5,6 +5,7 @@ const Navbar = () => {
         <nav>
             <ul>
                 <li><Link to="/">Accueil</Link></li>
+                <li><Link to="/MainPage">MainPage</Link></li>
             </ul>
         </nav>
     );
