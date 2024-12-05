@@ -1,0 +1,90 @@
+/* Conteneur principal */
+.main-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Masque les débordements pour cacher les barres de défilement */
+    background-color: #f0f0f0; /* Optionnel : couleur de fond */
+}
+
+/* Conteneur des éléments */
+.elements-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Assure que les éléments sont au-dessus de la vague */
+}
+
+/* Items des éléments */
+.element-item {
+    position: absolute;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Centrage de l'image */
+    transform: translate(-50%, -50%);
+}
+
+/* Position spécifique pour chaque élément */
+
+/* Bouée en haut à gauche */
+.element-item.lifebuoy {
+    top: 10%;
+    left: 10%;
+}
+
+/* Raft en bas, légèrement plus grand, remonté à 60% */
+.element-item.raft {
+    top: 60%; /* Remonté pour éviter d'être trop bas */
+    left: 50%;
+}
+
+/* Bateau à droite, remonté à 20% */
+.element-item.boat {
+    top: 20%; /* Remonté pour un meilleur équilibre visuel */
+    left: 85%;
+}
+
+/* Icônes */
+.element-icon {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Tailles des icônes */
+.element-item.lifebuoy .element-icon {
+    width: 125px;
+    height: 125px;
+}
+
+.element-item.boat .element-icon {
+    width: 150px;
+    height: 150px;
+}
+
+.element-item.raft .element-icon {
+    width: 200px;
+    height: 200px;
+}
+
+/* Agrandissement au survol */
+.element-item:hover .element-icon {
+    transform: scale(1.2);
+}
+
+/* Effet lors de la sélection */
+.element-item.selected .element-icon {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+/* Contenu principal */
+.content {
+    position: absolute;
+    bottom: 20px; /* Ajustez selon vos besoins */
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+}
+
