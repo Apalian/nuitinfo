@@ -4,6 +4,7 @@ import './MainPage.css';
 import boatImg from '../assets/boat.png';
 import raftImg from '../assets/raft.png';
 import lifebuoyImg from '../assets/lifebuoy.png';
+import oceanVideo from '../assets/Videomer2.mp4'; // Importez votre vidéo ici
 
 const MainPage = () => {
     const [selectedItem, setSelectedItem] = useState(null);
@@ -18,9 +19,9 @@ const MainPage = () => {
 
     // Positions initiales pour chaque élément
     const initialPositions = {
-        lifebuoy: { top: '10%', left: '10%' }, // En haut à gauche
-        raft: { top: '60%', left: '50%' },     // En bas, centré horizontalement
-        boat: { top: '20%', left: '85%' },     // Centré verticalement, à droite
+        lifebuoy: { top: '10%', left: '10%' },
+        raft: { top: '60%', left: '50%' },
+        boat: { top: '20%', left: '85%' },
     };
 
     // Position cible pour l'élément sélectionné (milieu gauche)
@@ -28,20 +29,17 @@ const MainPage = () => {
 
     useEffect(() => {
         if (selectedItem) {
-            // Calculer le délai basé sur la position horizontale de l'élément
-            const waveDuration = 10000; // Durée de l'animation de la vague en ms (10s)
+            const waveDuration = 10000;
             const elementLeft = initialPositions[selectedItem].left.replace('%', '');
             const delay = ((100 + parseInt(elementLeft)) / 200) * waveDuration;
 
             const timer = setTimeout(() => {
-                // Ajouter la classe 'ripple-effect' pour déclencher l'animation
                 const element = document.querySelector(`.element-item.${selectedItem}`);
                 if (element) {
                     element.classList.add('ripple-effect');
-                    // Supprimer la classe après l'animation
                     setTimeout(() => {
                         element.classList.remove('ripple-effect');
-                    }, 1000); // Durée de l'animation d'ondulation (1s)
+                    }, 1000);
                 }
             }, delay);
 
@@ -51,6 +49,18 @@ const MainPage = () => {
 
     return (
         <div className="main-container">
+            {/* Vidéo en arrière-plan */}
+            <video
+                className="background-video"
+                autoPlay
+                loop
+                muted
+                playsInline
+            >
+                <source src={oceanVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+
             <div className="elements-container">
                 {['lifebuoy', 'raft', 'boat'].map((item) => (
                     <motion.div
@@ -60,7 +70,7 @@ const MainPage = () => {
                         initial={{
                             top: initialPositions[item].top,
                             left: initialPositions[item].left,
-                            scale: item === 'raft' ? 1.2 : 1, // Raft légèrement plus grand
+                            scale: item === 'raft' ? 1.2 : 1,
                             opacity: 1,
                         }}
                         animate={
