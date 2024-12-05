@@ -1,12 +1,9 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Captcha Ludique - Puzzle</title>
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+@@ -10,19 +11,18 @@
 </head>
 <body>
     <div class="captcha-container">
@@ -14,6 +11,11 @@
         
         <img id="fishImage" src="./image/Poissongood.png" alt="Poisson" style="width: 100px; position: relative;">
         <div id="wordDisplay" style="font-size: 32px; font-weight: bold; color: lightgray; text-align: center;">
+        <div id="header-captcha">
+            <p>Complétez le captcha pour continuer</p>
+            <img id="fishImage" src="./image/Poissongood.png" alt="Poisson">
+        </div>
+        <div id="wordDisplay" class="word-display">
             O C E A N
         </div>
         <div class="puzzle">
@@ -21,8 +23,8 @@
         </div>
         
         <button id="verifyButton">Vérifier</button>
+        <button id="verifyButton" class="btn-primary">Vérifier</button>
     </div>
     <script src="./js/script.js"></script>
 </body>
 </html>
-
