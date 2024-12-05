@@ -1,0 +1,62 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+    margin: 0;
+}
+
+.captcha-container {
+    text-align: center;
+    background: #ffffff;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+.puzzle {
+    position: relative;
+    width: 800px; /* Rectangle encore agrandi */
+    height: 500px; /* Rectangle encore agrandi */
+    margin: 20px auto;
+    background: #87CEEB; /* Fond bleu */
+    border-radius: 12px; /* Coins arrondis */
+    overflow: hidden;
+    border: 2px solid #ddd;
+}
+
+#puzzlePiece {
+    width: 40px; /* Taille réduite */
+    height: 15px; /* Taille réduite */
+    position: absolute;
+    background: linear-gradient(135deg, red, yellow);
+    border-radius: 20px; /* Forme de pilule */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: none;
+    transform-origin: center;
+}
+
+
+
+.random-letter {
+    pointer-events: none; /* Empêche les clics */
+    padding: 5px;
+    border-radius: 3px;
+}
+
+
+#verifyButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#verifyButton:hover {
+    background-color: #45a049;
+}
