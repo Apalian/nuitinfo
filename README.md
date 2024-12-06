@@ -8,6 +8,8 @@ In the project directory, you can run:
 
 ### `npm start`
 
+Si l'application ne marche pas sur le serveur, il faut utiliser cette commande ci dessus ^^ pour le lance en local
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
