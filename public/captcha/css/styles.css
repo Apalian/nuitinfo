@@ -1,0 +1,131 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #d7f9f6;
+    margin: 0;
+}
+
+.captcha-container {
+    text-align: center;
+    background: #ffffff;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+#header-captcha {
+    display: flex;
+    align-items: center; 
+    justify-content: center;  
+    gap: 20px;  
+}
+
+.puzzle {
+    position: relative;
+    width: 800px; 
+    height: 500px;
+    margin: 20px auto;
+    background: #87CEEB; 
+    border-radius: 12px; 
+    overflow: hidden;
+    border: 2px solid #ddd;
+}
+
+
+#puzzlePiece {
+    width: 60px; 
+    height:30px;
+    clip-path: polygon(8% 7%, 3% 30%, 1% 51%, 4% 73%, 9% 93%, 57% 100%, 68% 98%, 89% 79%, 99% 50%, 92% 26%, 79% 7%, 62% 0);
+    position: absolute;
+    background-image: url('../image/bateaupng.png'); 
+    background-size: cover;
+    background-position: center; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: none;
+    transform-origin: center;
+}
+
+
+.random-letter {
+    pointer-events: none; 
+    padding: 5px;
+    border-radius: 3px;
+}
+
+
+#wordDisplay, #fishImage {
+    display: inline-block;  /* Aligne le texte et l'image sur la même ligne */
+    vertical-align: middle; /* Aligne verticalement les éléments */
+    margin-right: 50px;     /* Espace entre le texte et l'image */
+}
+
+#fishImage {
+    width: 100px; 
+    height:auto; 
+}
+
+#wordDisplay {
+    font-size: 32px; 
+    font-weight: bold; 
+    color: lightgray; 
+    text-align: center;
+    text-decoration: underline;
+}
+@keyframes fishCelebrate {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0.1;
+    }
+    30% {
+        transform: translateY(-80px) scale(1);
+        opacity: 1;
+    }
+    60% {
+        transform: translateY(-160px) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0.1;
+    }
+}
+
+.celebration-fish {
+    position: absolute;
+    width: 40px;
+    opacity: 0;
+    animation: fishCelebrate 1s ease-out forwards;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.captcha-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    display: inline-block;
+}
+
+.captcha-box {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.captcha-box input[type="checkbox"] {
+    transform: scale(1.5);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.captcha-box label {
+    font-weight: bold;
+}
