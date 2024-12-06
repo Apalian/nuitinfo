@@ -77,10 +77,6 @@
     left: 50%;
 }
 
-.element-item.raft.selected {
-    transform: translate(-50%, -50%) scale(5) rotate(0deg) !important;
-}
-
 .element-item.boat.selected {
     transform: translate(-50%, -50%) scale(5) rotate(0deg) !important;
 }
@@ -142,16 +138,49 @@
 }
 
 .modal-content {
-    background: white;
     color: black !important;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    max-width: 80%;
+    text-align: center;
+    z-index: 10000;
+    pointer-events: all;
+}
+
+.modx70-modal {
     padding: 20px;
     border-radius: 8px;
     width: 500px;
     max-width: 80%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
     text-align: center;
-    z-index: 10000;
-    pointer-events: all;
+    background: white;
+    color: black !important;
+}
+
+.modal-bouee {
+    color: black !important;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    max-width: 80%;
+    text-align: center;
+    background: white;
+}
+
+.close-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.close-button:hover {
+    background-color: #0056b3;
 }
 
 /* Zones invisibles sur la bouée, disposées en triangle équilatéral */
@@ -159,34 +188,127 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.8); /* Visible avec un léger fond */
+    color: #000;
+    border-radius: 50%;
     cursor: pointer;
     top: 50%;
     left: 50%;
-}
-
-/* Zone en haut (angle: -90°, vers le haut) */
-.zone-1 {
-    transform: translate(-50%, calc(-50% - 35px));
-}
-
-/* Zone en bas à gauche (angle: ~150°) */
-.zone-2 {
-    transform: translate(calc(-50% - 30px), calc(-50% + 17px));
-}
-
-/* Zone en bas à droite (angle: ~30°) */
-.zone-3 {
-    transform: translate(calc(-50% + 30px), calc(-50% + 17px));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s;
 }
 
 .invisible-zone:hover {
-    box-shadow: 0 0 15px gold;
+    background: rgba(255, 255, 255, 1);
 }
 
-.body-image  {
-    width: 50%;
+/* Ajustement des zones pour les rapprocher du contour de la bouée */
+.zone-1 {
+    transform: translate(-50%, calc(-50% - 25px)); /* Réduit de 30px à 25px */
+}
+
+.zone-2 {
+    transform: translate(calc(-50% - 20px), calc(-50% + 12px)); /* Réduit de 25px à 20px et +14px à +12px */
+}
+
+.zone-3 {
+    transform: translate(calc(-50% + 20px), calc(-50% + 12px)); /* Symétrique à zone-2 */
+}
+
+/* Styles spécifiques pour la modal du radeau */
+.raft-modal-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.raft-image {
+    width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto;
+}
+
+.human-body-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; /* Ajustez la taille selon vos besoins */
+    height: auto;
+    pointer-events: none; /* Empêche les clics de passer à travers l'image */
+}
+
+/* Zones cliquables sur le corps humain */
+.body-zone {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #000;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.body-zone:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Exemple de positions pour les zones sur le corps humain */
+/* Remplacez ces valeurs par celles correspondant à vos organes */
+.body-zone-1 {
+    top: -37%; /* Ajusté de 30% à 25% pour monter */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.body-zone-2 {
+    top: 9%; /* Ajusté de 40% à 35% pour monter */
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+
+.body-zone-3 {
+    top: 9%; /* Ajusté de 40% à 35% pour monter */
+    left: 59%;
+    transform: translate(-50%, -50%);
+}
+
+.body-zone-4 {
+    top: 38%; /* Ajusté de 55% à 50% pour monter */
+    left: 45%;
+    transform: translate(-50%, -50%);
+}
+
+.body-zone-5 {
+    top: 38%; /* Ajusté de 55% à 50% pour monter */
+    left: 60%;
+    transform: translate(-50%, -50%);
+}
+
+/* Styles spécifiques pour les modales des organes */
+.modal-body {
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    background: white;
+    color: black;
+}
+
+.modal-body h2 {
+    margin-bottom: 10px;
+}
+
+.modal-body p {
+    margin-bottom: 20px;
 }
