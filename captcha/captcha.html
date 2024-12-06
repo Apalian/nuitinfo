@@ -8,9 +8,12 @@
     body {
         display: flex;
         justify-content: center;
-        align-items: center;
+        /* On aligne désormais vers le haut */
+        align-items: flex-start; 
         height: 100vh;
         margin: 0;
+        /* Ajout d'un espace en haut pour positionner le captcha "mi-haut" */
+        padding-top: 10vh;
     }
 
     .recaptcha-box {
@@ -96,7 +99,6 @@
     checkbox.addEventListener('click', () => {
         checkbox.classList.toggle('checked');
         // Ici, vous pourriez déclencher votre redirection ou logique supplémentaire.
-        // Par exemple, une fois coché, rediriger vers index.html :
         if (checkbox.classList.contains('checked')) {
             setTimeout(() => {
                 window.location.href = 'captchaludique.html'; 
