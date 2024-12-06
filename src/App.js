@@ -10,8 +10,8 @@ const App = () => {
         <Router>
             <Routes>
                 {/* Rediriger vers le fichier HTML statique */}
-                <Route path="/" element={<RedirectToCaptcha/>} />
-                <Route path="/Accueil" element={<AccueilSite />} />
+
+                <Route path="/" element={<AccueilSite />} />
                 <Route path="/MainPage" element={<MainPage />} />
             </Routes>
         </Router>
