@@ -3,15 +3,12 @@ import React from 'react';
 import Header from './Header';
 import './MODX70Page.css';
 
-// Import des images si nécessaire
-import boatImg from '../assets/boat.png'; // Remplacez par l'image appropriée
-
 const MODX70Page = () => {
     return (
         <div className="modx70-page-container">
             <Header />
             <div className="modx70-content">
-                <h1>Le MODX 70 (Un Appareil de Soutien Extérieur pour l’Océan)</h1>
+                <h1>Lee MODX 70 (Un Appareil de Soutien Extérieur pour l’Océan)</h1>
 
                 <div className="modx70-section">
                     <h2>Parallèle avec le corps humain</h2>

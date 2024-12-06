@@ -3,7 +3,6 @@ import React from 'react';
 import Header from './Header';
 import Section from './Section';
 import './DetailsPage.css';
-import { useNavigate } from 'react-router-dom'; // Importez useNavigate
 
 // Import des images
 import coeurImg from '../assets/coeur.png';
