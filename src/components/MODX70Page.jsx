@@ -3,9 +3,6 @@ import React from 'react';
 import Header from './Header';
 import './MODX70Page.css';
 
-// Import des images si nécessaire
-import boatImg from '../assets/boat.png'; // Remplacez par l'image appropriée
-
 const MODX70Page = () => {
     return (
         <div className="modx70-page-container">
