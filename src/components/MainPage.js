@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './MainPage.css';
 import boatImg from '../assets/boat.png';
+import bodyImg from '../assets/body.png';
 import raftImg from '../assets/raft.png';
 import lifebuoyImg from '../assets/boue.png';
 import fishImg from '../assets/Asset 2.png';
@@ -166,12 +167,64 @@ const MainPage = () => {
                 </div>
             </div>
 
-            {/* Modal du bateau (générique) */}
+            {selectedItem === 'raft' && (
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                    <img
+                        src={bodyImg}
+                        alt="body"
+                        className="body-image"
+                    />
+                </div>
+            )}
+
             {selectedItem === 'boat' && (
                 <div className="modal-overlay" onClick={() => setSelectedItem(null)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <h2>Bateau</h2>
-                        <p>Informations sur le bateau et la décarbonation du transport maritime.</p>
+                        <div className="modx70-content">
+                            <h1>Lee MODX 70 (Un Appareil de Soutien Extérieur pour l’Océan)</h1>
+
+                            <div className="modx70-section">
+                                <h2>Parallèle avec le corps humain</h2>
+                                <p>
+                                    Lorsque certains organes vitaux d’un patient s’affaiblissent, la médecine peut
+                                    recourir à des dispositifs de soutien externes pour rétablir les fonctions
+                                    essentielles. De même, le MODX 70, développé par la Fondation Race For Water, agit
+                                    comme un appareil technologique venant assister l’Océan dans sa lutte contre le
+                                    réchauffement, la pollution et la dégradation des écosystèmes. Tel un « cœur
+                                    artificiel » ou un « poumon externe » placé au service d’un organisme affaibli, ce
+                                    navire « zéro émission de CO₂ » réduit la pression sur les processus océaniques,
+                                    facilitant leur restauration.
+                                </p>
+                            </div>
+
+                            <div className="modx70-section">
+                                <h2>Problématique</h2>
+                                <p>
+                                    Le transport maritime classique, dopé aux énergies fossiles, libère de grandes
+                                    quantités de CO₂ et de polluants, perturbant les courants, l’équilibre chimique, la
+                                    biodiversité et la fonction filtrante de l’Océan. Privé d’un « système respiratoire
+                                    » optimal, d’une « circulation » fluide et d’une « immunité » robuste, l’Océan peine
+                                    à réguler le climat, produire de l’oxygène ou soutenir la vie marine. Sans
+                                    intervention, ses mécanismes vitaux se grippent, compromettant l’avenir de la
+                                    planète.
+                                </p>
+                            </div>
+
+                            <div className="modx70-section">
+                                <h2>Solutions</h2>
+                                <p>
+                                    Le MODX 70 démontre qu’il est possible de naviguer sans nuire aux équilibres
+                                    océaniques. En recourant aux énergies renouvelables, en intégrant des systèmes
+                                    véliques et un stockage de l’énergie innovant, il offre un modèle concret de
+                                    transition énergétique pour le transport maritime. À son bord, la Fondation Race For
+                                    Water mène études, sensibilisation et démonstrations, inspirant ainsi une évolution
+                                    des pratiques internationales. Comme un traitement adapté, ce navire aide l’Océan à
+                                    retrouver sa pleine vitalité, assurant la pérennité d’un environnement stable,
+                                    source de vie et d’équilibre pour les générations futures.
+                                </p>
+                            </div>
+                        </div>
                         <button onClick={() => setSelectedItem(null)}>Fermer</button>
                     </div>
                 </div>
