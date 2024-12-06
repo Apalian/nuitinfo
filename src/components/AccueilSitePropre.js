@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './AccueilSite.css';
+import './AccueilSitePropre.css';
 import oceanSound from '../assets/ocean-sound.mp3';
 import myVideo from '../assets/video.mp4';
 import {useNavigate} from "react-router-dom";
