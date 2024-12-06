@@ -4,7 +4,7 @@ import oceanSound from '../assets/ocean-sound.mp3';
 import myVideo from '../assets/video.mp4';
 import {useNavigate} from "react-router-dom";
 
-const AccueilSite = () => {
+const AccueilSitePropre = () => {
 
     const navigate = useNavigate();
 
@@ -136,7 +136,7 @@ const AccueilSite = () => {
                     className="volume-slider"
                 />
             </div>
-            {currentLine === textLines.length - 2 && (
+            {currentLine >= textLines.length - 3 && (
                 <button
                     className="sensibiliser-button"
                     onClick={() => (navigate('/MainPage'))}
@@ -148,4 +148,4 @@ const AccueilSite = () => {
     );
 };
 
-export default AccueilSite;
+export default AccueilSitePropre;
