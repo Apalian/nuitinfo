@@ -1,7 +1,9 @@
-// src/components/MainPage.js
+// src/components/DetailsPage.js
 import React from 'react';
 import Header from './Header';
 import Section from './Section';
+import './DetailsPage.css';
+import { useNavigate } from 'react-router-dom'; // Importez useNavigate
 
 // Import des images
 import coeurImg from '../assets/coeur.png';
@@ -9,9 +11,16 @@ import poumonsImg from '../assets/poumons.png';
 import planctonImg from '../assets/plancton.png';
 import corailImg from '../assets/corail.png';
 import metabolismImg from '../assets/metabolisme.png';
+import saliniteImg from '../assets/salinite.png'
 import decompositionImg from '../assets/decomposition.png';
 
 const DetailsPage = () => {
+    const navigate = useNavigate();
+
+    const handleBackClick = () => {
+        navigate('/MainPage'); // Retourne à la page principale
+    };
+
     const sections = [
         {
             title: "1. Le Cœur et le Système Circulatoire",
@@ -81,6 +90,7 @@ const DetailsPage = () => {
                 name: "Salinité & Température",
                 description: "L’océan régule sa salinité et sa température grâce à divers mécanismes naturels, assurant des conditions stables pour la vie marine.",
             },
+            image: saliniteImg,
         },
         {
             title: "6. Le Métabolisme et les Cycles Biogéochimiques",
@@ -113,8 +123,11 @@ const DetailsPage = () => {
     ];
 
     return (
-        <div>
-            <Header />
+        <div className="details-page-container">
+            <Header/>
+            <button className="back-button" onClick={handleBackClick}>
+                &larr; Retour
+            </button>
             {sections.map((section, index) => (
                 <Section
                     key={index}

@@ -1,0 +1,84 @@
+/* src/components/Section.css */
+
+/* Style général pour chaque section */
+.section {
+    padding: 60px 0; /* Espace en haut et en bas */
+    background-color: #ffffff; /* Couleur de fond blanche */
+}
+
+.section:nth-child(even) {
+    background-color: #f9f9f9; /* Couleur de fond légèrement différente pour les sections paires */
+}
+
+/* Style pour le conteneur */
+.section .container {
+    max-width: 1200px; /* Largeur maximale du conteneur */
+    margin: 0 auto; /* Centrer le conteneur */
+    padding: 0 15px; /* Padding horizontal */
+}
+
+/* Style pour les titres */
+.section h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.section h4 {
+    font-size: 1.5rem;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+/* Style pour les paragraphes */
+.section p {
+    font-size: 1rem;
+    color: #555555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Style pour les images */
+.section img {
+    height: 80%;
+    width: 80%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section img:hover {
+    transform: scale(1.05);
+}
+
+/* Alignement du contenu */
+.section .row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animation douce pour l'apparition des sections */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section {
+    opacity: 0; /* Initialement invisible */
+    animation: fadeInUp 0.8s forwards; /* Animation d'apparition */
+    animation-delay: 0.2s;
+}
+
+.section:nth-child(odd) {
+    animation-delay: 0.4s;
+}
+
+.section:nth-child(even) {
+    animation-delay: 0.6s;
+}
