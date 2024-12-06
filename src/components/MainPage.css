@@ -53,12 +53,25 @@
     justify-content: center;
     cursor: pointer;
     transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
+    width: 100px; /* Donnez une taille fixe */
+    height: 100px; /* Donnez une taille fixe */
+    border-radius: 50%; /* Toujours rond */
+    overflow: hidden; /* S'assure que l'image ne dépasse pas */
 }
 
+/* L'icône s'ajuste à l'intérieur de l'élément rond */
+.element-icon {
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+    border-radius: 50%; /* Assurer que l'image est également ronde */
+}
+
+/* Au survol, on aura un halo parfaitement rond */
 .element-item:hover {
     box-shadow: 0 0 15px rgba(255,255,255,0.8);
-    border-radius: 50%;
 }
+
 
 .element-icon {
     width: 80px;
