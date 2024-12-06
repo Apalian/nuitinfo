@@ -484,19 +484,18 @@ function shrinkRect(rect, factor) {
         bottom: centerY + height/2
     };
 }
-
 // Lorsque le captcha est complété (dans la fonction finalizeCaptcha)
 function finalizeCaptcha() {
     puzzleContainer.classList.add('success-animation'); 
 
     setTimeout(() => {
-        
         puzzleContainer.style.transition = 'background-color 1s ease';
         puzzleContainer.style.backgroundColor = '#A1D6E3';
     }, 300);
 
     // Lancer la célébration de poissons
     startFishCelebration();
+
     // Calcule le temps total écoulé
     const now = Date.now();
     const totalMs = now - startTime;
@@ -509,9 +508,11 @@ function finalizeCaptcha() {
     const timerDisplay = document.getElementById('timerDisplay');
     timerDisplay.textContent = `Captcha réussi en ${totalSeconds} secondes !`;
 
-
-    
+    // Redirige l'utilisateur vers la page d'accueil de l'application React
+    // Adaptez l'URL si nécessaire, par exemple /accueil, /home, etc.
+    window.location.href = "/accueil"; 
 }
+
 
 
 function startFishCelebration() {
@@ -531,7 +532,7 @@ function startFishCelebration() {
 
 function spawnCelebrationFish() {
     const fish = document.createElement('img');
-    fish.src = '../image/poissongood.png'; // Mettez une image de poisson adapté
+    fish.src = './image/Poissongood.png'; // Mettez une image de poisson adapté
     fish.classList.add('celebration-fish');
 
     // Position aléatoire à l'horizontale
