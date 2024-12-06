@@ -84,13 +84,13 @@
 }
 
 .element-item.boat .element-icon {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
 }
 
 .element-item.raft .element-icon {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
 }
 
 /* Agrandissement au survol */
@@ -112,62 +112,3 @@
     text-align: center;
 }
 
-/* Animation de la vague */
-.wave-container {
-    position: absolute;
-    bottom: 0;
-    width: 200%; /* Largeur doublée pour permettre le mouvement */
-    height: 100px; /* Hauteur de la vague */
-    overflow: hidden;
-    pointer-events: none; /* Pour que la vague ne bloque pas les interactions */
-    z-index: 0; /* Vague au-dessus de l'image sky mais en dessous des éléments */
-}
-
-.wave {
-    position: absolute;
-    bottom: 0;
-    width: 200%;
-    height: 100px;
-    /* Créer une vague avec des dégradés linéaires */
-    background:
-            linear-gradient(135deg, #00aaff 25%, transparent 25%) -50px 0,
-            linear-gradient(225deg, #00aaff 25%, transparent 25%) -50px 0,
-            linear-gradient(315deg, #00aaff 25%, transparent 25%),
-            linear-gradient(45deg, #00aaff 25%, transparent 25%);
-    background-size: 100px 100px;
-    background-repeat: repeat-x;
-    animation: moveWave 10s linear infinite;
-}
-
-@keyframes moveWave {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-/* Animation d'ondulation sur les éléments */
-@keyframes ripple {
-    0% {
-        transform: scale(1);
-    }
-    25% {
-        transform: scale(1.1);
-    }
-    50% {
-        transform: scale(1);
-    }
-    75% {
-        transform: scale(0.9);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Classe pour déclencher l'animation d'ondulation */
-.element-item.ripple-effect .element-icon {
-    animation: ripple 1s ease-in-out;
-}
