@@ -139,7 +139,7 @@ const AccueilSite = () => {
             {currentLine === textLines.length - 2 && (
                 <button
                     className="sensibiliser-button"
-                    onClick={() => (navigate('/sensibilisation'))}
+                    onClick={() => (navigate('/MainPage'))}
                 >
                     Me sensibiliser
                 </button>
