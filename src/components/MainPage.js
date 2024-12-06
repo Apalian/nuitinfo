@@ -37,7 +37,7 @@ const MainPage = () => {
     useEffect(() => {
         // Ralentir la vidéo
         if (videoRef.current) {
-            videoRef.current.playbackRate = 0.5; // Ralentir la vidéo à 50% de la vitesse normale
+            videoRef.current.playbackRate = 0.3; // Ralentir la vidéo à 50% de la vitesse normale
         }
 
         if (selectedItem) {
