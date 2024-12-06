@@ -510,7 +510,7 @@ function finalizeCaptcha() {
 
     // Redirige l'utilisateur vers la page d'accueil de l'application React
     // Adaptez l'URL si nécessaire, par exemple /accueil, /home, etc.
-    window.location.href = "/accueil"; 
+    window.location.href = "/Accueil";
 }
 
 
