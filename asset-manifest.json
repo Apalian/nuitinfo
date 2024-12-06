@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.06006c81.css",
-    "main.js": "/static/js/main.1c17c217.js",
+    "main.css": "/static/css/main.0c8ba3f4.css",
+    "main.js": "/static/js/main.6bea8838.js",
     "static/js/453.73553cdd.chunk.js": "/static/js/453.73553cdd.chunk.js",
+    "static/media/VideoOcean.mp4": "/static/media/VideoOcean.7b61910046cc06a69b94.mp4",
     "static/media/video.mp4": "/static/media/video.134c5ad22416cb6a318d.mp4",
     "static/media/ocean-sound.mp3": "/static/media/ocean-sound.495192b05799d260f119.mp3",
     "static/media/raft.png": "/static/media/raft.e1878aa7ade85ebf722a.png",
@@ -11,12 +12,12 @@
     "static/media/boue.png": "/static/media/boue.e4f6b024f730fff8ed1a.png",
     "static/media/logoChasse.png": "/static/media/logoChasse.fdd8c6e5a24aa561e38d.png",
     "index.html": "/index.html",
-    "main.06006c81.css.map": "/static/css/main.06006c81.css.map",
-    "main.1c17c217.js.map": "/static/js/main.1c17c217.js.map",
+    "main.0c8ba3f4.css.map": "/static/css/main.0c8ba3f4.css.map",
+    "main.6bea8838.js.map": "/static/js/main.6bea8838.js.map",
     "453.73553cdd.chunk.js.map": "/static/js/453.73553cdd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.06006c81.css",
-    "static/js/main.1c17c217.js"
+    "static/css/main.0c8ba3f4.css",
+    "static/js/main.6bea8838.js"
   ]
 }
