@@ -23,7 +23,7 @@
     height: 0;
 }
 
-/* Positions figées des trois éléments */
+/* Positions figées des éléments */
 .element-item.lifebuoy {
     position: absolute;
     top: 50%;
@@ -53,43 +53,28 @@
     justify-content: center;
     cursor: pointer;
     transition: transform 0.3s, opacity 0.3s, box-shadow 0.3s;
-    width: 100px; /* Donnez une taille fixe */
-    height: 100px; /* Donnez une taille fixe */
-    border-radius: 50%; /* Toujours rond */
-    overflow: hidden; /* S'assure que l'image ne dépasse pas */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
-/* L'icône s'ajuste à l'intérieur de l'élément rond */
 .element-icon {
     width: 80px;
     height: 80px;
     pointer-events: none;
-    border-radius: 50%; /* Assurer que l'image est également ronde */
+    border-radius: 50%;
 }
 
-/* Au survol, on aura un halo parfaitement rond */
 .element-item:hover {
     box-shadow: 0 0 15px rgba(255,255,255,0.8);
 }
 
-
-.element-icon {
-    width: 80px;
-    height: 80px;
-    pointer-events: none;
-}
-
-/* État sélectionné par défaut (si vous souhaitez que la plupart utilisent scale(5)) */
 .element-item.selected {
     transition: transform 0.6s ease-in-out;
-    transform: translate(-50%, -50%) scale(5) rotate(0deg) !important;
+    transform: translate(-50%, -50%) scale(2) rotate(0deg) !important;
     top: 50%;
     left: 50%;
-}
-
-/* Spécificités par élément */
-.element-item.lifebuoy.selected {
-    transform: translate(-50%, -50%) scale(2) rotate(0deg) !important;
 }
 
 .element-item.raft.selected {
@@ -99,6 +84,7 @@
 .element-item.boat.selected {
     transform: translate(-50%, -50%) scale(5) rotate(0deg) !important;
 }
+
 /* Poisson */
 .fish {
     position: absolute;
@@ -117,7 +103,6 @@
     display: block;
 }
 
-/* Animation du poisson */
 @keyframes fishJump {
     0% {
         transform: translate(-50%, 300px) rotate(50deg);
@@ -152,15 +137,49 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 100;
+    z-index: 9999;
+    pointer-events: all;
 }
 
 .modal-content {
     background: white;
+    color: black !important;
     padding: 20px;
     border-radius: 8px;
     width: 300px;
     max-width: 80%;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     text-align: center;
+    z-index: 10000;
+    pointer-events: all;
+}
+
+/* Zones invisibles sur la bouée, disposées en triangle équilatéral */
+.invisible-zone {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    cursor: pointer;
+    top: 50%;
+    left: 50%;
+}
+
+/* Zone en haut (angle: -90°, vers le haut) */
+.zone-1 {
+    transform: translate(-50%, calc(-50% - 35px));
+}
+
+/* Zone en bas à gauche (angle: ~150°) */
+.zone-2 {
+    transform: translate(calc(-50% - 30px), calc(-50% + 17px));
+}
+
+/* Zone en bas à droite (angle: ~30°) */
+.zone-3 {
+    transform: translate(calc(-50% + 30px), calc(-50% + 17px));
+}
+
+.invisible-zone:hover {
+    box-shadow: 0 0 15px gold;
 }
