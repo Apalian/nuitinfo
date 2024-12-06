@@ -1,5 +1,4 @@
 /* src/components/MainPage.css */
-
 .main-container {
     position: relative;
     width: 100%;
@@ -15,78 +14,92 @@
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    /* Ralentir la vidéo en ajustant la vitesse via JavaScript */
 }
 
 .elements-container {
     position: absolute;
-    bottom: 20px; /* Positionner les éléments en bas avec un peu de marge */
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none; /* Permettre les clics uniquement sur les éléments */
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+}
+
+/* Positions figées des trois éléments */
+.element-item.lifebuoy {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(620px, 265px) scale(1.1) rotate(0deg);
+}
+
+.element-item.raft {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-492px, 138px) scale(3.3) rotate(0deg);
+}
+
+.element-item.boat {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(310px, -37px) scale(4.3) rotate(15deg);
 }
 
 .element-item {
-    position: relative;
-    margin: 0 20px; /* Espacement entre les éléments */
-    cursor: pointer;
-    transition: transform 0.3s, opacity 0.3s;
-    pointer-events: all; /* Activer les interactions sur les éléments */
-}
-
-.element-item:hover {
-    transform: scale(1.1);
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
 }
 
 .element-icon {
-    width: 80px; /* Augmenter la taille des éléments */
-    height: 80px; /* Augmenter la taille des éléments */
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
 }
 
-.details-container {
-    width: 40%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.3);
-    overflow-y: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Poisson */
+.fish {
+    position: absolute;
+    top: 50%;
+    /* left sera défini dynamiquement par JS */
+    transform: translate(-50%, 300px) rotate(25deg);
+    opacity: 0;
 }
 
-@media (max-width: 768px) {
-    .elements-container {
-        bottom: 10px; /* Ajuster pour les petits écrans */
-    }
-
-    .element-icon {
-        width: 60px; /* Taille réduite pour les petits écrans */
-        height: 60px;
-    }
-
-    .details-container {
-        width: 100%;
-        height: 40%;
-        bottom: 0;
-        top: auto;
-    }
+/* Classe pour lancer l'animation */
+.fish.animating {
+    animation: fishJump 3s ease-in-out forwards;
 }
 
-/* Effet ripple */
-.ripple-effect {
-    animation: ripple 1s ease-out;
+.fish-icon {
+    width: 60px;
+    height: auto;
+    display: block;
 }
 
-@keyframes ripple {
+/* Animation du poisson */
+@keyframes fishJump {
     0% {
-        transform: scale(1);
+        transform: translate(-50%, 300px) rotate(50deg);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-50%, 0px) rotate(20deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -100px) rotate(0deg);
+        opacity: 1;
+    }
+    80% {
+        transform: translate(-50%, 50px) rotate(-20deg);
         opacity: 1;
     }
     100% {
-        transform: scale(2);
+        transform: translate(-50%, 300px) rotate(-50deg);
         opacity: 0;
     }
 }
