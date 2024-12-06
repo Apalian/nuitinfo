@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import MainPage from "./components/MainPage";
-import AccueilSite from "./components/AccueilSite";
+import AccueilSite from "./components/AccueilSitePropre";
 
 const App = () => {
     return (
