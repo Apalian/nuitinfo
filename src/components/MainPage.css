@@ -1,5 +1,3 @@
-/* src/components/MainPage.css */
-
 .main-container {
     position: relative;
     width: 100%;
@@ -89,4 +87,74 @@
         transform: scale(2);
         opacity: 0;
     }
+}
+
+/* ---------------------- */
+/* Styles pour les zones invisibles et les modales */
+/* ---------------------- */
+
+/* Zones invisibles sur la bouée */
+.invisible-zone {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    /* Pour déboguer, vous pouvez ajouter une bordure :
+       border: 1px solid red; */
+}
+
+/* Ajustez les positions selon votre image de bouée */
+.zone-1 {
+    top: 20%;
+    left: 25%;
+}
+
+.zone-2 {
+    top: 20%;
+    left: 60%;
+}
+
+.zone-3 {
+    top: 60%;
+    left: 40%;
+}
+
+/* Styles des modales */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    max-width: 400px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    background: #2c3e50;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
 }

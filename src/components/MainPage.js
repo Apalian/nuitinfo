@@ -1,17 +1,21 @@
 // src/components/MainPage.js
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'; // Importez useNavigate
+import { useNavigate } from 'react-router-dom';
 import './MainPage.css';
 import boatImg from '../assets/boat.png';
 import raftImg from '../assets/raft.png';
 import lifebuoyImg from '../assets/lifebuoy.png';
-import oceanVideo from '../assets/video.mp4'; // Importez votre vidéo ici
+import oceanVideo from '../assets/video.mp4';
 
 const MainPage = () => {
     const [selectedItem, setSelectedItem] = useState(null);
-    const navigate = useNavigate(); // Initialisez useNavigate
-    const videoRef = useRef(null); // Référence pour la vidéo
+    const [showModal1, setShowModal1] = useState(false);
+    const [showModal2, setShowModal2] = useState(false);
+    const [showModal3, setShowModal3] = useState(false);
+
+    const navigate = useNavigate();
+    const videoRef = useRef(null);
 
     const handleItemClick = (item) => {
         if (selectedItem === item) {
@@ -19,25 +23,22 @@ const MainPage = () => {
         } else {
             setSelectedItem(item);
             if (item === 'raft') {
-                navigate('/DetailsPage'); // Naviguez vers DetailsPage
+                navigate('/DetailsPage');
             }
         }
     };
 
-    // Positions initiales pour chaque élément
     const initialPositions = {
-        lifebuoy: {left: '-20%' },
-        raft: {left: '0%' },
-        boat: {left: '20%' },
+        lifebuoy: { left: '-20%' },
+        raft: { left: '0%' },
+        boat: { left: '20%' },
     };
 
-    // Position cible pour l'élément sélectionné (milieu gauche)
     const selectedPosition = { top: '50%', left: '20%' };
 
     useEffect(() => {
-        // Ralentir la vidéo
         if (videoRef.current) {
-            videoRef.current.playbackRate = 0.3; // Ralentir la vidéo à 50% de la vitesse normale
+            videoRef.current.playbackRate = 0.3;
         }
 
         if (selectedItem) {
@@ -68,7 +69,7 @@ const MainPage = () => {
                 loop
                 muted
                 playsInline
-                ref={videoRef} // Associer la référence à la vidéo
+                ref={videoRef}
             >
                 <source src={oceanVideo} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -83,7 +84,7 @@ const MainPage = () => {
                         initial={{
                             bottom: initialPositions[item].bottom,
                             left: initialPositions[item].left,
-                            scale: item === 'raft' ? 1.5 : 1.2, // Augmenter l'échelle initiale
+                            scale: item === 'raft' ? 1.5 : 1.2,
                             opacity: 1,
                         }}
                         animate={
@@ -91,14 +92,14 @@ const MainPage = () => {
                                 ? {
                                     top: selectedPosition.top,
                                     left: selectedPosition.left,
-                                    scale: 2, // Agrandir l'élément sélectionné
+                                    scale: 2,
                                     opacity: 1
                                 }
                                 : selectedItem === null
                                     ? {
                                         bottom: initialPositions[item].bottom,
                                         left: initialPositions[item].left,
-                                        scale: item === 'raft' ? 1.5 : 1.2, // Maintenir la taille agrandie
+                                        scale: item === 'raft' ? 1.5 : 1.2,
                                         opacity: 1
                                     }
                                     : { opacity: 0 }
@@ -123,9 +124,84 @@ const MainPage = () => {
                             className="element-icon"
                             loading="lazy"
                         />
+
+                        {/* Si l'élément sélectionné est la bouée, on affiche les zones invisibles */}
+                        {item === 'lifebuoy' && selectedItem === 'lifebuoy' && (
+                            <>
+                                <div
+                                    className="invisible-zone zone-1"
+                                    onClick={() => setShowModal1(true)}
+                                    title="Solution 1"
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyPress={(e) => e.key === 'Enter' && setShowModal1(true)}
+                                ></div>
+                                <div
+                                    className="invisible-zone zone-2"
+                                    onClick={() => setShowModal2(true)}
+                                    title="Solution 2"
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyPress={(e) => e.key === 'Enter' && setShowModal2(true)}
+                                ></div>
+                                <div
+                                    className="invisible-zone zone-3"
+                                    onClick={() => setShowModal3(true)}
+                                    title="Solution 3"
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyPress={(e) => e.key === 'Enter' && setShowModal3(true)}
+                                ></div>
+                            </>
+                        )}
                     </motion.div>
                 ))}
             </div>
+
+            {/* Modales */}
+            {showModal1 && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h2>Décarboner le transport maritime</h2>
+                        <p>
+                            La Fondation Race For Water promeut l’usage d’énergies
+                            renouvelables et de technologies véliques, afin de naviguer
+                            sans émettre de CO₂, contribuant ainsi à préserver le climat et
+                            l’équilibre de l’Océan.
+                        </p>
+                        <button onClick={() => setShowModal1(false)}>Fermer</button>
+                    </div>
+                </div>
+            )}
+
+            {showModal2 && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h2>Réduire la pollution plastique</h2>
+                        <p>
+                            En soutenant des solutions locales de gestion et de valorisation
+                            des déchets, la Fondation limite l’arrivée de plastiques dans
+                            l’Océan, préservant ainsi la faune marine et la santé humaine.
+                        </p>
+                        <button onClick={() => setShowModal2(false)}>Fermer</button>
+                    </div>
+                </div>
+            )}
+
+            {showModal3 && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h2>Protéger la biodiversité marine</h2>
+                        <p>
+                            À travers la création d’Aires Marines Protégées et la
+                            sensibilisation, la Fondation Race For Water contribue à
+                            sauvegarder les écosystèmes marins, renforçant ainsi la
+                            résilience de l’Océan face aux changements globaux.
+                        </p>
+                        <button onClick={() => setShowModal3(false)}>Fermer</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
