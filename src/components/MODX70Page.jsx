@@ -8,7 +8,7 @@ const MODX70Page = () => {
         <div className="modx70-page-container">
             <Header />
             <div className="modx70-content">
-                <h1>Le MODX 70 (Un Appareil de Soutien Extérieur pour l’Océan)</h1>
+                <h1>Lee MODX 70 (Un Appareil de Soutien Extérieur pour l’Océan)</h1>
 
                 <div className="modx70-section">
                     <h2>Parallèle avec le corps humain</h2>
