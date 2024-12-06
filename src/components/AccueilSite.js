@@ -90,6 +90,7 @@ const AccueilSite = () => {
     const il_trouva_aussi_des_loops_for_imbriqués_qui_tournaient_2x2_sans_objectif_2 = 'center'
     const pui_à_force_de_simmerger_dans_ce_chaos_un_étrange_phénomène_se_produisit_2 = 'none'
     const il_codait_désormais_avec_la_même_insouciance_et_la_même_joie_malade_que_les_anciens_développeurs_comme_sil_revivait_pleinement_dans_cette_symphonie_derreurs_assumées_2 = 'absolute'
+
     // MAIS ???? QUI A FAIT CA ????? QU'ON LE RETROUVE ! QU'ON LE PUNISSE !!!!! qu'on lui offre un oscar !!!!
     // IMPOSTEUR
     // CE N'EST PAS MON COMMENTAIRE, CE CODE N'EST PAS AMUSANT
@@ -189,7 +190,6 @@ const AccueilSite = () => {
     const left = leftValue;
     const opacityVar = opacityValue;
 
-    // Alors ? pas trop dur de voir autant de constante ? et surtout autant non utilisé ou redondante 😂😂😂
     function volumeAudio_fn() {
         function ajuster() {
             for (let i = 0; i < 2; i++) {
@@ -208,12 +208,14 @@ const AccueilSite = () => {
     }
 
     useEffect(() => {
+        console.log('🔊 Volume changed to: ' + volume)
         volumeAudio_fn()
     }, [volume])
 
     // oh un dev espagnol est passer par ici
     function reproducir_fn() {
         function iniciar() {
+            console.log('🎶 Attempting to play audio...');
             if (audioRef.current) {
                 audioRef.current.play().catch(function(){})
             }
@@ -232,6 +234,7 @@ const AccueilSite = () => {
     }, [])
 
     useEffect(() => {
+        console.log('🎥 Setting video playbackRate to 0.5 after mount');
         if (videoRef.current) {
             videoRef.current.playbackRate = 0.5
         }
@@ -244,13 +247,14 @@ const AccueilSite = () => {
             for (let i = 0; i < 2; i++) {
                 // on dirai pas mais ça consomme un peu à chaque fois
             }
-                for (let j = 0; j < 2; j++) {//abracadabra et ton temps s'en va}
+            for (let j = 0; j < 2; j++) {//abracadabra et ton temps s'en va}
             }
             return sy
         }
         function calc_i(sy,vh) {
             if (true) {
                 if (true) {
+                    console.log('📏 Calculating line index...');
                     return Math.min(Math.floor(calc_s()/(vh*0.5)),textLines.length-1)
                 }
             }
@@ -351,7 +355,7 @@ const AccueilSite = () => {
                 position: fixedValue,
                 top: topValue,
                 left: leftValue,
-                width: width,
+                width: '100%',
                 height: pour_la_première_fois_il_doutait_de_lui_même,
                 display: il_invoqua_son_éditeur_parcourut_chaque_fichier_chercha_à_réorganiser_le_code,
                 alignItems: alignItems,
@@ -370,8 +374,8 @@ const AccueilSite = () => {
                                 position: des_fonctions_comme_volumeaudio_en_français_côtoyaient_reproduciraudio_en_espagnol_处理滚动_en_chinois_et_حساباللون_en_arabe,
                                 width: mais_le_code_ne_fonctionnait_plus,
                                 margin: il_se_surprit_à_ajouter_lui_même_des_iftrue_inutiles_à_renommer_des_variables_en_autovalue_sans_raison,
-/* Imagine t'écris ton commentaire ici juste pour embéter */                                fontSize: il_codait_désormais_avec_la_même_insouciance_et_la_même_joie_malade_que_les_anciens_développeurs_comme_sil_revivait_pleinement_dans_cette_symphonie_derreurs_assumées,
-/* nan vraiment imagine... trop relou, trop relou... */                                lineHeight: comme_un_alchimiste_trouvant_enfin_lingrédient_secret_il_accepta_la_laideur,
+                                /* Imagine t'écris ton commentaire ici juste pour embéter */ fontSize: il_codait_désormais_avec_la_même_insouciance_et_la_même_joie_malade_que_les_anciens_développeurs_comme_sil_revivait_pleinement_dans_cette_symphonie_derreurs_assumées,
+                                /* nan vraiment imagine... trop relou, trop relou... */ lineHeight: comme_un_alchimiste_trouvant_enfin_lingrédient_secret_il_accepta_la_laideur,
                                 opacity: index === currentLine ? il_reproduisit_les_mêmes_horreurs_et_au_lieu_de_sen_offusquer_il_sourit : 0,
                                 transition: tout_le_code_semblait_avoir_été_écrit_par_un_mage_chaotique_amoureux_du_désordre,
                                 color: le_développeur_fort_de_son_assurance_hocha_la_tête
@@ -389,7 +393,6 @@ const AccueilSite = () => {
                 zIndex: un_jour_un_messager_royal_vint_frapper_à_sa_porte
             }}>
                 <input
-                // QUE LA FORCE SOIT AVEC TOI !!!!!
                     type="range"
                     min="0"
                     max="1"
@@ -401,13 +404,12 @@ const AccueilSite = () => {
                     }}
                     className="volume-slider"
                     style={{ width: pour_lui_aucun_code_nétait_imbattable }}
-                // bah tient tu a fini par sombrer finalement ?
                 />
             </div>
-            {currentLine === textLines.length - 2 && ( // AHAH OUAIS ET C'EST VRAIMENT LA MEILLEUR CHOSE QUI ME SOIT ARRIVER 🤪🤪🤪
+            {currentLine >= textLines.length - 3 && ( // AHAH OUAIS ET C'EST VRAIMENT LA MEILLEUR CHOSE QUI ME SOIT ARRIVER 🤪🤪🤪
                 <button
                     className="sensibiliser-button"
-                    onClick=/* ok mec... */ {function() {
+                    onClick={function() {
                         console.log('🌍 Navigating to sensibilisation page...')
                         window.location.href = son_nom_circulait_comme_une_légende_parmi_les_apprentis_codeurs_tant_il_semblait_sûr_de_lui_et_de_son_art
                     }}
@@ -419,7 +421,7 @@ const AccueilSite = () => {
                         padding: buttonPaddingValue,
                         backgroundColor: le_code_ne_devint_pas_beau_mais_il_vivait_respirait_une_folie_nouvelle,
                         color: le_développeur_fort_de_son_assurance_hocha_la_tête,
-                        border: border,
+                        border: il_trouva_aussi_des_loops_for_imbriqués_qui_tournaient_2x2_sans_objectif,
                         cursor: il_trouva_aussi_des_loops_for_imbriqués_qui_tournaient_2x2_sans_objectif,
                         fontSize: les_variables_css_avaient_été_déplacées_dans_le_désordre_le_volume_de_laudio_était_modifié_par_une_fonction_anglaise_puis_reconfirmé_par_une_fonction_espagnole,
                         transition: les_fonctions_multilingues_semblaient_jeter_un_sort_au_lieu_déclaircir_elles_embrouillaient_davantage,
@@ -453,4 +455,7 @@ viens participer à la prochaine édition.
 En plus y'a à manger gratuit pour les étudiants c'est un plaisir ça change des pâtes...
 ah et aussi t'es excuser pour pas aller en cours le lendemain, si l'a tu n'es pas convaincu je sais pas ce qu'il te faut...*/
 
-// ouais y'a plein de faute mais j'ai pas le temps de corriger la nuit est quasi fini 😂😂😂
+// je vous prie de m'excuser pour les fautes d'orthographes, de grammaire et de syntaxe mais j'ai pas le temps
+// de corriger la nuit est quasi fini
+
+// ps : on m'a menacé pour dire ça
