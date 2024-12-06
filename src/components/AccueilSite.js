@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Css/AccueilSite.css';
 import oceanSound from '../assets/ocean-sound.mp3';
+import myVideo from '../assets/VideoOcean.mp4';
 
 const AccueilSite = () => {
     const [currentLine, setCurrentLine] = useState(0);
@@ -16,12 +17,13 @@ const AccueilSite = () => {
         "Tout comme le corps humain malade, l'océan épuisé peine à remplir son rôle.",
         "Et les conséquences sont évidentes pour nous : augmentation de gaz à effet de serre, chaîne alimentaire déséquilibrée, risques pour notre santé.",
         "Cependant, tout n'est pas tout noir",
-        "Il existe des solutions, et vous allez les découvrires",
+        "Il existe des solutions, et vous allez les découvrir",
         "Préserver l'océan, c'est protéger notre propre équilibre, notre propre souffle.",
         "Nous sommes un avec l'océan. Préservons-le, pour vivre ensemble."
     ];
 
     const audioRef = useRef(null);
+    const videoRef = useRef(null);
 
     useEffect(() => {
         if (audioRef.current) {
@@ -38,6 +40,13 @@ const AccueilSite = () => {
     }, []);
 
     useEffect(() => {
+        if (videoRef.current) {
+            // Vitesse de lecture réduite
+            videoRef.current.playbackRate = 0.5;
+        }
+    }, []);
+
+    useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
             const viewportHeight = window.innerHeight;
@@ -45,7 +54,6 @@ const AccueilSite = () => {
                 Math.floor(scrollY / (viewportHeight * 0.5)),
                 textLines.length - 1
             );
-            console.log(lineIndex);
             setCurrentLine(lineIndex);
         };
 
@@ -53,25 +61,24 @@ const AccueilSite = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, [textLines.length]);
 
-    // Calcul de la couleur de fond en fonction de currentLine
-    // On fait deux transitions :
-    // 0 -> 8 : noir (#000) vers bleu foncé (#001f3f)
-    // 8 -> fin : bleu foncé (#001f3f) vers bleu clair (#0074D9)
-
     const startColor = [0, 0, 0];       // #000000
     const midColor = [0, 31, 63];       // #001f3f
-    const endColor = [0, 116, 217];     // #0074D9
 
-    let blendedColor;
+    let bgColor;
+    let videoOpacity = 0;
+
     if (currentLine < 8) {
         const subProgress = currentLine / 8; // entre 0 et 1
-        blendedColor = startColor.map((c,i) => Math.round(c + (midColor[i] - c) * subProgress));
+        const blendedColor = startColor.map((c, i) =>
+            Math.round(c + (midColor[i] - c) * subProgress)
+        );
+        bgColor = `rgb(${blendedColor[0]}, ${blendedColor[1]}, ${blendedColor[2]})`;
+        videoOpacity = 0; // Vidéo invisible jusqu'à la ligne 8
     } else {
+        bgColor = `rgb(${midColor[0]}, ${midColor[1]}, ${midColor[2]})`;
         const subProgress = (currentLine - 8) / (textLines.length - 1 - 8);
-        blendedColor = midColor.map((c,i) => Math.round(c + (endColor[i] - c) * subProgress));
+        videoOpacity = Math.min(Math.max(subProgress, 0), 1); // Entre 0 et 1
     }
-
-    const bgColor = `rgb(${blendedColor[0]}, ${blendedColor[1]}, ${blendedColor[2]})`;
 
     return (
         <div
@@ -79,15 +86,36 @@ const AccueilSite = () => {
             style={{
                 height: `${textLines.length * 50}vh`,
                 backgroundColor: bgColor,
-                transition: 'background-color 1s ease-in-out'
+                transition: 'background-color 1s ease-in-out',
+                position: 'relative',
+                overflow: 'hidden'
             }}
         >
-            <audio ref={audioRef} src={oceanSound} loop />
+            <audio ref={audioRef} src={oceanSound} loop/>
+
+            <video
+                ref={videoRef}
+                src={myVideo}
+                autoPlay
+                loop
+                muted
+                style={{
+                    position: 'fixed',
+                    top: 0,
+                    left: 0,
+                    width: '100vw',
+                    height: '100vh',
+                    objectFit: 'cover',
+                    opacity: videoOpacity,
+                    transition: 'opacity 1s ease-in-out',
+                    zIndex: 1,
+                }}
+            />
             <div className="text-container">
                 {textLines.map((line, index) => (
                     <p
                         key={index}
-                        className={`line ${index === currentLine  ? 'active' : ''}`}
+                        className={`line ${index === currentLine ? 'active' : ''}`}
                     >
                         {line}
                     </p>
