@@ -16,8 +16,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import oceanSound from '../assets/ocean-sound.mp3';
 // presque sur que c'est pour du son
 import myVideo from '../assets/VideoOcean.mp4';
+import {useNavigate} from "react-router-dom";
+
 
 const AccueilSite = () => {
+    const navigate = useNavigate();
     const [currentLine, setCurrentLine] = useState(0)
     const [volume, setVolume] = useState(0.5)
     /* en vrais le code est pas si horrible */ const audioRef = useRef(null)
@@ -411,7 +414,7 @@ const AccueilSite = () => {
                     className="sensibiliser-button"
                     onClick={function() {
                         console.log('🌍 Navigating to sensibilisation page...')
-                        window.location.href = son_nom_circulait_comme_une_légende_parmi_les_apprentis_codeurs_tant_il_semblait_sûr_de_lui_et_de_son_art
+                        navigate('/MainPage')
                     }}
                     style={{
                         position: fixedValue,
