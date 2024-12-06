@@ -1,6 +1,5 @@
 let puzzlePiece = document.getElementById('puzzlePiece');
 let puzzleContainer = document.querySelector('.puzzle');
-let verifyButton = document.getElementById('verifyButton');
 let wordDisplay = document.getElementById('wordDisplay'); // Référence au conteneur affichant le mot OCEAN
 let fishImage = document.getElementById('fishImage'); // Référence à l'image du poisson depuis le HTML
 
@@ -9,9 +8,14 @@ let lastMouseX = 0;
 let lastMouseY = 0;
 let currentAngle = 0;
 
+const pieceRect = puzzlePiece.getBoundingClientRect();
+const letters = document.querySelectorAll('.random-letter');
+const decoys = document.querySelectorAll('.decoy');
+
+
 const TRANSITION_SPEED = 0.5; // Contrôle la vitesse de transition
 
-const words = ['OCEAN', 'CLIMAT', 'CORAUX', 'CARBONE', 'PLANCTON', 'PLASTIQUE', 'PETROLE', 'POLLUTION']; // Liste des mots
+const words = ['OCEAN', 'CLIMAT', 'MERS', 'EAUX', 'FLOTS', 'FISH', 'CORAL'];
 const WORD = words[Math.floor(Math.random() * words.length)]; // Choisit un mot aléatoire dans la liste
 let collectedLetters = []; // Liste des lettres récupérées
 let lives = 3; // Nombre de vies restantes
@@ -20,7 +24,6 @@ let wrongLetterTouched = false; // Indique si une lettre incorrecte a été touc
 puzzleContainer.addEventListener('mouseenter', startTracking);
 puzzleContainer.addEventListener('mouseleave', stopTracking);
 puzzleContainer.addEventListener('mousemove', movePiece);
-verifyButton.addEventListener('click', verifyCaptcha);
 
 // Génère toutes les lettres du mot aléatoire dans le puzzle
 generateWordLetters();
@@ -149,21 +152,7 @@ function updateCollectedLettersDisplay() {
     }
 }
 
-// Ajoute une animation de fin au puzzleContainer et retarde l'affichage de l'alerte
-function finalizeCaptcha() {
-    puzzleContainer.classList.add('success-animation'); // Ajoute une classe d'animation
 
-    // Animation de fin sur le puzzleContainer
-    setTimeout(() => {
-        puzzleContainer.style.transition = 'background-color 1s ease';
-        puzzleContainer.style.backgroundColor = '#4CAF50'; // Change la couleur en vert pour indiquer le succès
-    }, 300);
-
-    // Affiche l'alerte après un délai pour laisser l'animation se terminer
-    setTimeout(() => {
-        alert("Captcha réussi !");
-    }, 1500);
-}
 
 // Animation de perte lorsque toutes les vies sont perdues
 function failedCaptcha() {
@@ -174,7 +163,7 @@ function failedCaptcha() {
     // Animation de changement de la mer en noir (mer de pétrole)
     setTimeout(() => {
         puzzleContainer.style.transition = 'background-color 2s ease';
-        puzzleContainer.style.backgroundColor = '#000'; // Change la couleur en noir
+        puzzleContainer.style.backgroundColor = '#21295A';
     }, 500);
 
     // Affiche l'alerte après un délai pour laisser l'animation se terminer
@@ -234,14 +223,17 @@ function generateWordLetters() {
         letterContainer.classList.add('random-letter-container');
         letterContainer.style.position = 'absolute';
 
+        // Sélectionner aléatoirement l'une des deux poubelles
+        const poubelleSrc = Math.random() > 0.5 ? './image/poubelle.png' : './image/poubelle2.png';
+
         // Image de poubelle
         const trashImage = document.createElement('img');
-        trashImage.src = './image/poubelle.png';
-        trashImage.style.width = '50px'; // Ajustez la taille selon vos besoins
+        trashImage.src = poubelleSrc;
+        trashImage.style.width = '50px';
         trashImage.style.height = '50px';
         trashImage.style.position = 'absolute';
-        trashImage.style.top = '8px'; // Positionner 5px sous la lettre
-        trashImage.style.left = '-20px'; // Décalage de 5px vers la gauche
+        trashImage.style.top = '8px';
+        trashImage.style.left = '-20px';
 
         // Lettre par-dessus la poubelle
         const letterElement = document.createElement('div');
@@ -286,8 +278,7 @@ function generateWordLetters() {
 
 // Génère des leurres (lettres ou objets) qui ne font pas partie du mot à trouver
 function generateDecoyElements() {
-    const decoyCharacters = ['Î', 'R', 'X', 'Z', 'ÎLE', 'RÔCHER']; // Liste des leurres (lettres et objets)
-    const numDecoys = 5; // Nombre de leurres à ajouter
+    const numDecoys = 2; // Nombre de leurres à ajouter
 
     for (let i = 0; i < numDecoys; i++) {
         // Création du conteneur pour le leurre
@@ -295,41 +286,35 @@ function generateDecoyElements() {
         decoyContainer.classList.add('decoy-container');
         decoyContainer.style.position = 'absolute';
 
-        // Contenu du leurre
-        const decoyElement = document.createElement('div');
+        // Contenu du leurre remplacé par une image
+        const decoyElement = document.createElement('img');
         decoyElement.classList.add('decoy');
-
-        // Choisir un leurre aléatoire dans la liste des leurres
-        const decoyContent = decoyCharacters[Math.floor(Math.random() * decoyCharacters.length)];
-        decoyElement.textContent = decoyContent;
-
-        // Style du leurre (plus petit pour différencier des lettres correctes)
-        decoyElement.style.fontSize = '20px'; // Taille plus petite pour les leurres
-        decoyElement.style.color = 'black'; // Couleur noire pour différencier visuellement
-        decoyElement.style.fontWeight = 'bold';
+        decoyElement.src = './image/rocher.png';
+        decoyElement.style.width = '50px';  
+        decoyElement.style.height = '50px'; 
         decoyElement.style.position = 'relative';
 
-        // Ajouter le leurre dans le conteneur
+        // Ajouter le leurre (l'image) dans le conteneur
         decoyContainer.appendChild(decoyElement);
 
         // Position aléatoire dans le puzzleContainer
-        let x = Math.random() * (puzzleContainer.clientWidth - 50); // Ajustement pour rester dans le conteneur
+        let x = Math.random() * (puzzleContainer.clientWidth - 50); 
         let y = Math.random() * (puzzleContainer.clientHeight - 50);
 
-        // Position du leurre
         decoyContainer.style.left = `${x}px`;
         decoyContainer.style.top = `${y}px`;
 
         // Ajouter le leurre au puzzle
         puzzleContainer.appendChild(decoyContainer);
 
-        // Déterminer le type de mouvement
+        // Déterminer le type de mouvement (linear ou zigzag)
         const moveType = Math.random() > 0.5 ? 'linear' : 'zigzag';
 
-        // Déclencher l'animation pour ce leurre
+        // Animer le leurre
         animateDecoy(decoyContainer, moveType);
     }
 }
+
 
 // Fonction pour animer les leurres
 function animateDecoy(decoy, moveType) {
@@ -392,19 +377,19 @@ function checkCollisions() {
     }
 
     const pieceRect = puzzlePiece.getBoundingClientRect();
+    const pieceHitbox = shrinkRect(pieceRect, 0.7);
     const letters = document.querySelectorAll('.random-letter');
     const decoys = document.querySelectorAll('.decoy');
 
     // Vérifie la collision avec les lettres correctes
     letters.forEach(letter => {
         const letterRect = letter.getBoundingClientRect();
-
-        // Détecte une collision avec la bonne lettre
+        const letterHitbox = shrinkRect(letterRect, 0.4); // Réduire aussi la hitbox de la lettre
         if (
-            pieceRect.left < letterRect.right &&
-            pieceRect.right > letterRect.left &&
-            pieceRect.top < letterRect.bottom &&
-            pieceRect.bottom > letterRect.top
+            pieceHitbox.left < letterHitbox.right &&
+            pieceHitbox.right > letterHitbox.left &&
+            pieceHitbox.top < letterHitbox.bottom &&
+            pieceHitbox.bottom > letterHitbox.top
         ) {
             const letterValue = letter.textContent;
 
@@ -430,7 +415,7 @@ function checkCollisions() {
                 wrongLetterTouched = true;
                 setTimeout(() => {
                     wrongLetterTouched = false;
-                }, 1000); // Débloque après 1 seconde
+                }, 2000); // Débloque après 1 seconde
                 if (lives === 0) {
                     failedCaptcha(); // Animation de perte
                 }
@@ -438,17 +423,18 @@ function checkCollisions() {
         }
     });
 
+
+    
     // Vérifie la collision avec les leurres
     decoys.forEach(decoy => {
         const decoyRect = decoy.getBoundingClientRect();
-
-        // Détecte une collision avec un leurre
+        const decoyHitbox = shrinkRect(decoyRect, 0.28); // Réduire la hitbox du rocher
         if (
-            pieceRect.left < decoyRect.right &&
-            pieceRect.right > decoyRect.left &&
-            pieceRect.top < decoyRect.bottom &&
-            pieceRect.bottom > decoyRect.top
-        ) {
+            pieceHitbox.left < decoyHitbox.right &&
+            pieceHitbox.right > decoyHitbox.left &&
+            pieceHitbox.top < decoyHitbox.bottom &&
+            pieceHitbox.bottom > decoyHitbox.top
+        ){
             // Mauvaise collision avec un leurre
             if (!wrongLetterTouched) {
                 lives--;
@@ -456,7 +442,7 @@ function checkCollisions() {
                 wrongLetterTouched = true;
                 setTimeout(() => {
                     wrongLetterTouched = false;
-                }, 1000); // Débloque après 1 seconde
+                }, 2000); // Débloque après 1 seconde
                 if (lives === 0) {
                     failedCaptcha(); // Animation de perte
                 }
@@ -481,10 +467,113 @@ function updateFishImage() {
     }
 }
 
-function verifyCaptcha() {
-    if (collectedLetters.length === WORD.length) {
-        finalizeCaptcha(); // Utiliser la nouvelle animation de fin
-    } else {
-        alert("Captcha incomplet. Collectez toutes les lettres.");
-    }
+function shrinkRect(rect, factor) {
+    // factor = 0.5 par exemple pour réduire à 50% de la taille
+    const width = rect.width * factor;
+    const height = rect.height * factor;
+    const centerX = (rect.left + rect.right) / 2;
+    const centerY = (rect.top + rect.bottom) / 2;
+    
+    return {
+        left: centerX - width/2,
+        right: centerX + width/2,
+        top: centerY - height/2,
+        bottom: centerY + height/2
+    };
 }
+
+function finalizeCaptcha() {
+    puzzleContainer.classList.add('success-animation'); 
+
+    setTimeout(() => {
+        
+        puzzleContainer.style.transition = 'background-color 1s ease';
+        puzzleContainer.style.backgroundColor = '#A1D6E3';
+    }, 300);
+
+    // Lancer la célébration de poissons
+    startFishCelebration();
+
+}
+// Lorsque le captcha est complété (dans la fonction finalizeCaptcha)
+function finalizeCaptcha() {
+    puzzleContainer.classList.add('success-animation'); 
+
+    setTimeout(() => {
+        
+        puzzleContainer.style.transition = 'background-color 1s ease';
+        puzzleContainer.style.backgroundColor = '#A1D6E3';
+    }, 300);
+
+    // Lancer la célébration de poissons
+    startFishCelebration();
+    // Calcule le temps total écoulé
+    const now = Date.now();
+    const totalMs = now - startTime;
+    const totalSeconds = Math.floor(totalMs / 1000);
+
+    // Arrête le timer
+    clearInterval(timerInterval);
+
+    // Met à jour le timerDisplay pour indiquer le temps final
+    const timerDisplay = document.getElementById('timerDisplay');
+    timerDisplay.textContent = `Captcha réussi en ${totalSeconds} secondes !`;
+
+    
+}
+
+
+function startFishCelebration() {
+    const celebrationDuration = 5000; // 3 secondes
+    const startTime = Date.now();
+
+    // Génère un poisson toutes les ~150ms pendant 3s
+    const interval = setInterval(() => {
+        const now = Date.now();
+        if (now - startTime > celebrationDuration) {
+            clearInterval(interval);
+            return;
+        }
+        spawnCelebrationFish();
+    }, 150);
+}
+
+function spawnCelebrationFish() {
+    const fish = document.createElement('img');
+    fish.src = '../image/poissongood.png'; // Mettez une image de poisson adapté
+    fish.classList.add('celebration-fish');
+
+    // Position aléatoire à l'horizontale
+    const containerWidth = puzzleContainer.clientWidth;
+    const randomX = Math.random() * (containerWidth - 40); // Ajuster selon taille du poisson
+    fish.style.left = randomX + 'px';
+
+    // Le poisson part de sous la surface : on place bottom à 0 et l'animation simule le saut
+    fish.style.bottom = Math.random()*500+'px';
+
+    puzzleContainer.appendChild(fish);
+
+    // Le poisson disparait après l'animation (1s + petit délai)
+    setTimeout(() => {
+        fish.remove();
+    }, 2000); 
+}
+
+
+let startTime = Date.now();
+let timerInterval; // Variable pour stocker l'ID du setInterval
+
+function startTimer() {
+    timerInterval = setInterval(updateTimerDisplay, 1000);
+}
+
+function updateTimerDisplay() {
+    const now = Date.now();
+    const elapsedMs = now - startTime;
+    const elapsedSeconds = Math.floor(elapsedMs / 1000);
+    const timerDisplay = document.getElementById('timerDisplay');
+    timerDisplay.textContent = `Temps écoulé : ${elapsedSeconds}s`;
+}
+
+// Appeler startTimer() lorsque vous voulez commencer le timer
+startTimer();
