@@ -13,6 +13,8 @@ jobs:
       - name: git-checkout
         uses: actions/checkout@v3
 
+      - name: Set CI to false
+        run: echo "CI=true" >> $GITHUB_ENV
 
       - name: Install all dependencies
         run: npm install
