@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 const App = () => {
   return (
       <Router>
-          <Navbar />
         <Routes>
           {/* Définir les routes */}
           <Route path="/" element={<AccueilSite />} /><Route path="/new" element={<AccueilSite />} />
