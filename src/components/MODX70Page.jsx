@@ -1,11 +1,10 @@
 // src/components/MODX70Page.js
 import React from 'react';
 import Header from './Header';
-import Section from './Section';
 import './MODX70Page.css';
 
 // Import des images si nécessaire
-import supportDeviceImg from '../assets/support-device.png'; // Remplacez par l'image appropriée
+import boatImg from '../assets/boat.png'; // Remplacez par l'image appropriée
 
 const MODX70Page = () => {
     return (
