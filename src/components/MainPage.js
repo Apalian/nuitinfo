@@ -1,5 +1,5 @@
 // src/components/MainPage.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom'; // Importez useNavigate
 import './MainPage.css';
@@ -11,6 +11,7 @@ import oceanVideo from '../assets/video.mp4'; // Importez votre vidéo ici
 const MainPage = () => {
     const [selectedItem, setSelectedItem] = useState(null);
     const navigate = useNavigate(); // Initialisez useNavigate
+    const videoRef = useRef(null); // Référence pour la vidéo
 
     const handleItemClick = (item) => {
         if (selectedItem === item) {
@@ -25,15 +26,20 @@ const MainPage = () => {
 
     // Positions initiales pour chaque élément
     const initialPositions = {
-        lifebuoy: { top: '10%', left: '10%' },
-        raft: { top: '60%', left: '50%' },
-        boat: { top: '20%', left: '85%' },
+        lifebuoy: {left: '-20%' },
+        raft: {left: '0%' },
+        boat: {left: '20%' },
     };
 
     // Position cible pour l'élément sélectionné (milieu gauche)
     const selectedPosition = { top: '50%', left: '20%' };
 
     useEffect(() => {
+        // Ralentir la vidéo
+        if (videoRef.current) {
+            videoRef.current.playbackRate = 0.5; // Ralentir la vidéo à 50% de la vitesse normale
+        }
+
         if (selectedItem) {
             const waveDuration = 10000;
             const elementLeft = initialPositions[selectedItem].left.replace('%', '');
@@ -62,6 +68,7 @@ const MainPage = () => {
                 loop
                 muted
                 playsInline
+                ref={videoRef} // Associer la référence à la vidéo
             >
                 <source src={oceanVideo} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -74,9 +81,9 @@ const MainPage = () => {
                         className={`element-item ${item}`}
                         onClick={() => handleItemClick(item)}
                         initial={{
-                            top: initialPositions[item].top,
+                            bottom: initialPositions[item].bottom,
                             left: initialPositions[item].left,
-                            scale: item === 'raft' ? 1.2 : 1,
+                            scale: item === 'raft' ? 1.5 : 1.2, // Augmenter l'échelle initiale
                             opacity: 1,
                         }}
                         animate={
@@ -84,14 +91,14 @@ const MainPage = () => {
                                 ? {
                                     top: selectedPosition.top,
                                     left: selectedPosition.left,
-                                    scale: 1.5,
+                                    scale: 2, // Agrandir l'élément sélectionné
                                     opacity: 1
                                 }
                                 : selectedItem === null
                                     ? {
-                                        top: initialPositions[item].top,
+                                        bottom: initialPositions[item].bottom,
                                         left: initialPositions[item].left,
-                                        scale: item === 'raft' ? 1.2 : 1,
+                                        scale: item === 'raft' ? 1.5 : 1.2, // Maintenir la taille agrandie
                                         opacity: 1
                                     }
                                     : { opacity: 0 }
