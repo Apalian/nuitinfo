@@ -1,0 +1,57 @@
+.modx70-page-container {
+    padding: 20px;
+    background-color: #eef6fb; /* Couleur de fond douce */
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.modx70-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modx70-content h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.modx70-section {
+    margin-bottom: 40px;
+}
+
+.modx70-section h2 {
+    font-size: 2rem;
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+.modx70-section p {
+    font-size: 1.1rem;
+    color: #555555;
+    line-height: 1.6;
+}
+
+/* Responsivité pour les écrans plus petits */
+@media (max-width: 768px) {
+    .modx70-content {
+        padding: 15px;
+    }
+
+    .modx70-content h1 {
+        font-size: 2rem;
+    }
+
+    .modx70-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .modx70-section p {
+        font-size: 1rem;
+    }
+}
