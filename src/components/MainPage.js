@@ -1,19 +1,25 @@
+// src/components/MainPage.js
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom'; // Importez useNavigate
 import './MainPage.css';
 import boatImg from '../assets/boat.png';
 import raftImg from '../assets/raft.png';
 import lifebuoyImg from '../assets/lifebuoy.png';
-import oceanVideo from '../assets/Videomer2.mp4'; // Importez votre vidéo ici
+import oceanVideo from '../assets/video.mp4'; // Importez votre vidéo ici
 
 const MainPage = () => {
     const [selectedItem, setSelectedItem] = useState(null);
+    const navigate = useNavigate(); // Initialisez useNavigate
 
     const handleItemClick = (item) => {
         if (selectedItem === item) {
             setSelectedItem(null);
         } else {
             setSelectedItem(item);
+            if (item === 'raft') {
+                navigate('/DetailsPage'); // Naviguez vers DetailsPage
+            }
         }
     };
 
@@ -108,14 +114,10 @@ const MainPage = () => {
                             }
                             alt={item}
                             className="element-icon"
+                            loading="lazy"
                         />
                     </motion.div>
                 ))}
-            </div>
-            <div className="content">
-                {selectedItem === 'boat' && <div>Boat Page Content</div>}
-                {selectedItem === 'raft' && <div>Raft Page Content</div>}
-                {selectedItem === 'lifebuoy' && <div>Lifebuoy Page Content</div>}
             </div>
         </div>
     );
